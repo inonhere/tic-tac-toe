@@ -39,6 +39,8 @@ class Game < GameBoard
     @@player_1 = true
     @@player_2 = false
     @@winner = false
+    @@counter = 0
+    @@counter_2 = 0
     
     puts "To select where to put your movement input a number from 1 to 9"
     puts "First row it's 1 2 3"
@@ -121,6 +123,12 @@ class Game < GameBoard
                 @@winner = true
             elsif gameboard.block_3 == 'X' and gameboard.block_5 == 'X' and gameboard.block_7 == 'X'
                 puts "Player 1 wins"
+                gameboard.board
+                @@winner = true
+            end
+            @@counter += 1
+            if @@counter == 6 and @@winner == false
+                puts "Tie"
                 gameboard.board
                 @@winner = true
             end
@@ -210,7 +218,14 @@ class Game < GameBoard
                 gameboard.board
                 @@winner = true
             end
+            @@counter_2 += 1
+            if @@counter_2 == 5 and @@winner == false
+                puts 'Tie'
+                gameboard.board
+                @@winner = true
+            end
         end
+
     end
 end
 game = Game::new
