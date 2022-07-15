@@ -41,7 +41,7 @@ class Game < GameBoard
     @@winner = false
     
     while @@winner == false
-        while @@player_1 == true
+        while @@player_1 == true and @@winner == false
             gameboard.board
             puts "player 1 turn"
             x = gets.chomp
@@ -66,9 +66,13 @@ class Game < GameBoard
                 @@player_1 = false
                 @@player_2 = true
             end
+            if gameboard.block_1 == 'X' and gameboard.block_2 == 'X' and gameboard.block_3 == 'X'
+                puts "Player 1 is the winner"
+                @@winner = true
+            end
         end
     
-        while @@player_2 == true
+        while @@player_2 == true and @@winner == false
             gameboard.board
             puts "player 2 turn"
             o = gets.chomp
@@ -83,7 +87,7 @@ class Game < GameBoard
                 @@player_2 = false
                 @@player_1 = true
             elsif o == '3' and gameboard.block_3 == '.'
-                @gameboard.block_3=('O')
+                gameboard.block_3=('O')
                 gameboard.board
                 @@player_2 = false
                 @@player_1 = true
@@ -92,8 +96,17 @@ class Game < GameBoard
                 gameboard.board
                 @@player_2 = false
                 @@player_1 = true
+            elsif o == '5' and gameboard.block_5 == '.'
+                gameboard.block_5=('O')
+                gameboard.board
+                @@player_2 = false
+                @@player_1 = true
             end
         end
+        
+
+
+        puts gameboard.block_1
     end
 end
 game = Game::new
